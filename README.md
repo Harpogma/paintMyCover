@@ -23,7 +23,7 @@
   - gestion de commandes (table intermédiaire) +1 relation
 - Nom de domaine : paintmycover.ch
 
-Pour l’instant on se concentre sur les utilisateurs et les as. (commande envoie par mail)
+Pour l’instant on se concentre sur les utilisateurs et les admins. (commande envoie par mail)
 
 Un utilisateur peut :
 

@@ -1,0 +1,1 @@
+<!-- class Cover, attributs, validations, getters, setters -->
