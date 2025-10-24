@@ -28,10 +28,18 @@ class Database {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
-        //table utilisateurs - help me
+        $sql_user = "CREATE TABLE IF NOT EXISTS user (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            cover_id INT NOT NULL,
+            firstname VARCHAR(255) NOT NULL,
+            lastname VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL
+            password 
+            );";
+
 
         //table commande tableaux, photo??
-        $sql_covers = "CREATE TABLE IF NOT EXISTS covers (
+        $sql_cover = "CREATE TABLE IF NOT EXISTS cover (
             id INT AUTO_INCREMENT PRIMARY KEY,
             user_id INT NOT NULL,
             album_name VARCHAR(255) NOT NULL,
@@ -41,7 +49,7 @@ class Database {
             price_range VARCHAR(50) NOT NULL
             );";
 
-            $stmt = $this->pdo->prepare($sql_covers);
+            $stmt = $this->pdo->prepare($sql_cover);
             $stmt->execute();
  }
 
