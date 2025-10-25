@@ -1,0 +1,15 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect all non-existing files to index.php (if using a router)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+# Security: block access to hidden files (like .env, .git, etc.)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Optionally disable directory listing
+Options -Indexes
