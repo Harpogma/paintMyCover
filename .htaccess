@@ -1,22 +1,6 @@
-# Deny all web access by default
-<IfModule mod_authz_core.c>
-    Require all denied
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /paintMyCover/
+    RewriteCond %{REQUEST_URI} !^/paintMyCover/public/
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
-<IfModule !mod_authz_core.c>
-    Deny from all
-</IfModule>
-
-# But allow access to the 'public' folder
-<Directory "public">
-    <IfModule mod_authz_core.c>
-        Require all granted
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Allow from all
-    </IfModule>
-</Directory>
-
-# Make 'public' the only entry point if someone visits the domain directly
-RewriteEngine On
-RewriteRule ^$ public/ [L]
-RewriteRule (.*) public/$1 [L]

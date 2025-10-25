@@ -7,28 +7,3 @@
 body {
     padding: 2rem 0;
 }
-
-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-header h1 {
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    color: var(--muted-color);
-}
-
-.card {
-    margin-bottom: 2rem;
-}
-
-footer {
-    text-align: center;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--muted-border-color);
-    color: var(--muted-color);
-}
