@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . '/../src/config/config.php';
 require_once '../src/includes/auth.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
     $result = authenticateUser($_POST['username'], $_POST['password']);
 }
 ?>
@@ -9,31 +10,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
     <title>Création de compte</title>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    >
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
+
 <body>
     <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
 
     <div class="container">
-        <h2>Connexion</h2>
-        <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <?php if(isset($success)) echo "<p style='color:green;'>$success</p>"; ?>
 
-        <form action="../src/includes/auth.php" method="POST">
-            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <button type="submit" name="login">Se connecter</button>
-            <button type="submit" name="register">Créer un compte</button>
+        <form action="register.php" method="post">
+            <h1>Connexion</h1>
+            <div>
+                <label for="username">Nom</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div>
+                <label for="password2">Confirmez le mot de passe</label>
+                <input type="password" name="password2" id="password2">
+            </div>
+            <button type="submit">Créer un compte</button>
+            <footer>Déjà membre ? <a href="<?php echo url('login'); ?>">Se connecter</a></footer>
         </form>
     </div>
-   
+
     <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
 
 </body>
+
 </html>
