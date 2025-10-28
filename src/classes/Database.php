@@ -45,7 +45,7 @@ class Database {
             album_name VARCHAR(255) NOT NULL,
             artist_name VARCHAR(255) NOT NULL,
             canvas_size VARCHAR(100) NOT NULL,
-            photo 
+            photo VARCHAR(50) NOT NULL,
             price_range VARCHAR(50) NOT NULL
             );";
 

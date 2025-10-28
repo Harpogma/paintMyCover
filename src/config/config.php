@@ -1,6 +1,6 @@
 <?php
 
-define('BASE_URL', 'http://localhost/paintMyCover/');
+define('BASE_URL', 'https://paintmycover.ch/');
 
 function url($path = '') {
     if ($path && !str_ends_with($path, '.php')) {

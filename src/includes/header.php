@@ -6,7 +6,7 @@
             </a>
         </ul>
         <ul>
-            <li><a href="<?php echo url('cover'); ?>">Covers</a></li>
+            <li><a href="<?php echo url('about'); ?>">À propos</a></li>
             <li><a href="<?php echo url('contact'); ?>">Contact</a></li>
             <li><a href="<?php echo url('register'); ?>">Connexion</a></li>
         </ul>
