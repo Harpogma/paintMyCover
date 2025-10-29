@@ -38,20 +38,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
     <title><?= htmlspecialchars($traductions['title']) ?></title>
-    <title>Page d'accueil | PaintMyCover</title>
 </head>
 
 <body>
-
     <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
 
+    <div>
+    <form method="post" action="index.php">
+        <label for="language"><?= htmlspecialchars($traductions['choose_language']) ?></label>
+        <select name="language" id="language">
+            <option value="fr" <?= $lang === 'fr' ? ' selected' : '' ?>><?= htmlspecialchars($traductions['languages']['fr']) ?></option>
+            <option value="en" <?= $lang === 'en' ? ' selected' : '' ?>><?= htmlspecialchars($traductions['languages']['en']) ?></option>
+        </select>
+        <button type="submit"><?= htmlspecialchars($traductions['submit']) ?></button>
+    </form>
+</div>
+
     <main class="container">
-        <h1>Page d'accueil</h1>
+        <h1><?= htmlspecialchars($traductions['title']) ?></h1>
 
-        <p>Bienvenue sur la page d'accueil de PaintMyCover.</p>
+        <p><?= htmlspecialchars($traductions['accueil']) ?></p>
 
 
-        <p><a href="tools/index.php"><button>Aller à la gestion des commandes</button></a></p>
+        <h2>Covers</h2>
+<!-- rajouter img, titre album, nom artiste-->
     </main>
 
     <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>

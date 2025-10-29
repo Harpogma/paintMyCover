@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../src/config/config.php';
 require_once '../src/includes/auth.php';
+require_once __DIR__ . '/../src/i18n/load-translation.php';
 
 if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
     $result = authenticateUser($_POST['username'], $_POST['password']);
@@ -14,7 +15,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
-    <title>Création de compte</title>
+    <title><?= htmlspecialchars($traductions['compte']) ?></title>
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
@@ -26,9 +27,9 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
     <div class="container">
 
         <form action="register.php" method="post">
-            <h1>Connexion</h1>
+            <h1><?= htmlspecialchars($traductions['connexion']) ?></h1>
             <div>
-                <label for="username">Nom</label>
+                <label for="username"><?= htmlspecialchars($traductions['nom']) ?></label>
                 <input type="text" name="username" id="username">
             </div>
             <div>
@@ -36,15 +37,15 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
                 <input type="email" name="email" id="email">
             </div>
             <div>
-                <label for="password">Mot de passe</label>
+                <label for="password"><?= htmlspecialchars($traductions['mdp']) ?></label>
                 <input type="password" name="password" id="password">
             </div>
             <div>
-                <label for="password2">Confirmez le mot de passe</label>
+                <label for="password2"><?= htmlspecialchars($traductions['confirmer_mdp']) ?></label>
                 <input type="password" name="password2" id="password2">
             </div>
-            <button type="submit">Créer un compte</button>
-            <footer>Déjà membre ? <a href="<?php echo url('login'); ?>">Se connecter</a></footer>
+            <button type="submit"><?= htmlspecialchars($traductions['compte']) ?></button>
+            <footer><?= htmlspecialchars($traductions['membre']) ?><a href="<?php echo url('login'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></footer>
         </form>
     </div>
 
