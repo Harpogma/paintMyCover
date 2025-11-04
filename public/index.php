@@ -69,7 +69,7 @@ $albums = [
     <main class="container">
         <h1><?= htmlspecialchars($traductions['title']) ?></h1>
 
-        <p><?= htmlspecialchars($traductions['accueil']) ?></p>
+        <p><?= htmlspecialchars($traductions['accueilTitre']) ?></p>
 
 
         <h2>Covers</h2>
@@ -90,7 +90,7 @@ $albums = [
             ?>
         </main>
 
-        <p><a href="../public/cover/index.php"><button>Aller à la gestion des outils</button></a></p>
+        <p><a href="../public/cover/index.php"><button><?= htmlspecialchars($traductions['outils']) ?></button></a></p>
 
     </main>
 

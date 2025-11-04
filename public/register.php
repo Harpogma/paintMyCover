@@ -10,7 +10,7 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST') {
 
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="UTF-8">
