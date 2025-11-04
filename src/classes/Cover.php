@@ -4,7 +4,8 @@ namespace Cover;
 
 class Cover implements ICover {
     // Propriétés privées pour assurer l'encapsulation
-    private ?int $userId;
+    private ?int $id;
+    private int $userId;
     private string $albumName;
     private string $artistName;
     private string $canvaSize;
@@ -12,7 +13,7 @@ class Cover implements ICover {
     private string $priceRange;
 
     // Constructeur pour initialiser l'objet
-    public function __construct(?int $userId, string $albumName, string $artistName, string $canvaSize, string $imagePath, string $priceRange) {
+    public function __construct(?int $id, int $userId, string $albumName, string $artistName, string $canvaSize, string $imagePath, string $priceRange) {
         // Vérification des données
         if (empty($albumName)) {
             throw new \InvalidArgumentException("Le nom de l'album est requis.");
@@ -27,6 +28,7 @@ class Cover implements ICover {
         }
 
         // Initialisation des propriétés
+        $this->id = $id;
         $this->userId = $userId;
         $this->albumName = $albumName;
         $this->artistName = $artistName;
@@ -36,7 +38,11 @@ class Cover implements ICover {
     }
 
     // Getters pour accéder aux propriétés
-    public function getUserId(): ?int {
+    public function getId(): ?int {
+        return $this->id;
+    }
+
+    public function getUserId(): int {
         return $this->userId;
     }
 

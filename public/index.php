@@ -90,6 +90,8 @@ $albums = [
             ?>
         </main>
 
+        <p><a href="../public/cover/index.php"><button>Aller à la gestion des outils</button></a></p>
+
     </main>
 
     <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>

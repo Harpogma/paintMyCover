@@ -6,7 +6,7 @@ require_once __DIR__ . '/../utils/autoloader.php';
 
 use Database;
 
-class CoverManager implements ICoverManager {
+class CoversManager implements ICoversManager {
     private $database;
 
     public function __construct() {
