@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (PDOException $e) {
             $error = 'Erreur lors de la création du compte : ' . $e->getMessage();
         }
-    }
+    git}
 }
 
 ?>
