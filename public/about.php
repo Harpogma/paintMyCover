@@ -1,35 +1,34 @@
 <?php
-
+require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once '/../src/utils/autoloader.php';
-
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= htmlspecialchars($lang) ?>">
 <head>
     <meta charset="UTF-8">
-    <title>À Propos - PaintMyCover</title>
+    <title><?= htmlspecialchars($traductions['proposTitre']) ?></title>
     <link rel="stylesheet" href="assets/css/custom.css">
     </head>
 <body>
     <header>
         <nav>
-            <a href="index.php">Accueil</a> |
-            <a href="about.php">À Propos</a> |
-            <a href="login.php">Connexion</a>
+            <a href="index.php"><?= htmlspecialchars($traductions['accueil']) ?></a> |
+            <a href="about.php"><?= htmlspecialchars($traductions['propos']) ?></a> |
+            <a href="login.php"><?= htmlspecialchars($traductions['connexion']) ?></a>
             </nav>
     </header>
 
     <main class="container mt-4">
-        <h1>À Propos de PaintMyCover</h1>
+        <h1><?= htmlspecialchars($traductions['proposTitre']) ?></h1>
         <hr>
 
         <section>
-            <h2>Description du Projet</h2>
-            <p><strong>PaintMyCover</strong> est un gestionnaire de commandes de tableaux d'albums.</p>
+            <h2><?= htmlspecialchars($traductions['descriptionTitre']) ?></h2>
+            <p><strong>PaintMyCover</strong> <?= htmlspecialchars($traductions['descriptionTitre']) ?></p>
 
         <section>
-            <h2>L'Équipe</h2>
+            <h2><?= htmlspecialchars($traductions['team']) ?></h2>
             <ul>
                 <li><strong>Léa Pires</strong></li>
                 <li><strong>Grégory Daguerre</strong></li>

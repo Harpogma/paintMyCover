@@ -1,12 +1,12 @@
 <?php
-
+require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
 
 
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
     <meta charset="utf-8">
