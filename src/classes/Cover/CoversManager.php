@@ -2,7 +2,7 @@
 
 namespace Cover;
 
-require_once __DIR__ . '/../utils/autoloader.php';
+require_once __DIR__ . '/../../utils/autoloader.php';
 
 use Database;
 
@@ -15,7 +15,7 @@ class CoversManager implements ICoversManager {
 
     public function getCovers(): array {
         // Définition de la requête SQL pour récupérer tous les covers
-        $sql = "SELECT * FROM covers";
+        $sql = "SELECT * FROM cover";
 
         // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
@@ -23,14 +23,14 @@ class CoversManager implements ICoversManager {
         // Exécution de la requête SQL
         $stmt->execute();
 
-        // Récupération de tous les outils
+        // Récupération de toutes les covers
         $covers = $stmt->fetchAll();
 
         // Transformation des tableaux associatifs en objets Cover
         $covers = array_map(function ($coverData) {
             return new Cover(
                 $coverData['id'],
-                //$coverData['userId'],
+                $coverData['userId'],
                 $coverData['albumName'],
                 $coverData['artistName'],
                 $coverData['canvaSize'],
