@@ -30,28 +30,40 @@ class Database implements IDatabase {
 
         $users = "CREATE TABLE IF NOT EXISTS user (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            cover_id INT NOT NULL,
-            firstname VARCHAR(255) NOT NULL,
-            lastname VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL
-            password 
-            );";
+            username VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(50)
+        );";
 
+        $stmt = $this->pdo->prepare($users);
+        $stmt->execute();
 
         //table commande tableaux, photo??
         $covers = "CREATE TABLE IF NOT EXISTS cover (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
+            user_id INT,
             album_name VARCHAR(255) NOT NULL,
             artist_name VARCHAR(255) NOT NULL,
             canvas_size VARCHAR(100) NOT NULL,
             image VARCHAR(50) NOT NULL,
-            price_range VARCHAR(50) NOT NULL
-            );";
+            price_range VARCHAR(50) NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES user(id)
+        );";
 
         $stmt = $this->pdo->prepare($covers);
-            $stmt->execute();
- }
+        $stmt->execute();
+
+        $user_cover = "CREATE TABLE IF NOT EXISTS user_cover (
+            PRIMARY KEY (user_id, cover_id),
+            user_id INT NOT NULL,
+            cover_id INT NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+            FOREIGN KEY (cover_id) REFERENCES cover(id) ON DELETE CASCADE
+        );";
+
+        $stmt = $this->pdo->prepare($user_cover);
+        $stmt->execute();
+    }
 
  public function getPdo(): PDO {
         return $this->pdo;

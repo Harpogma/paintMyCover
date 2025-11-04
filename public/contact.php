@@ -1,12 +1,13 @@
-<?php
+<?php 
 
+require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
 
 
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= htmlspecialchars($lang) ?>">
 
 <head>
   <meta charset="utf-8">
@@ -17,7 +18,7 @@ require_once __DIR__ . '/../src/config/config.php';
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-  <title>Page d'accueil | PaintMyCover</title>
+  <title><?= htmlspecialchars($traductions['title']) ?></title>
 </head>
 
 <body>
@@ -27,7 +28,7 @@ require_once __DIR__ . '/../src/config/config.php';
   <form class="container">
     <fieldset>
       <label>
-        Prénom
+        <?= htmlspecialchars($traductions['nom']) ?>
         <input
           name="first_name"
           placeholder="Prénom"
@@ -52,7 +53,7 @@ require_once __DIR__ . '/../src/config/config.php';
 
     <input
       type="submit"
-      value="Envoyer" />
+      value="<?= htmlspecialchars($traductions['envoyer']) ?>" />
   </form>
   <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
 
