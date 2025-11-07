@@ -1,21 +1,22 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Inclusion de l'utilitaire de chargement des traductions
+require_once __DIR__ . '/../src/utils/cookie-manager.php';
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
 
-const COOKIE_NAME = 'lang';
-const COOKIE_LIFETIME = (30 * 24 * 60 * 60);
 const DEFAULT_LANG = 'fr';
 
-$lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
-
+// Récupérer la langue du cookie ou utiliser la langue par défaut
+$lang = CookieManager::getLanguage() ?? DEFAULT_LANG;
 $traductions = loadTranslation($lang);
 
-// changer langue préférée
+// Changer langue préférée
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lang = $_POST['language'] ?? DEFAULT_LANG;
-
-    setcookie(COOKIE_NAME, $lang, time() + COOKIE_LIFETIME);
+    CookieManager::setLanguage($lang);
     header('Location: index.php');
     exit;
 }
@@ -51,7 +52,7 @@ $albums = [
 
     <title><?= htmlspecialchars($traductions['title']) ?></title>
 </head>
-
+<?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
 <body>
     <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
 

@@ -17,6 +17,8 @@ return [
     'description' => "est un gestionnaire de commandes de tableaux d'albums.",
     'team' => "L'équipe",
     'envoyer' => 'Envoyer',
+    'cookies_message' => 'Ce site utilise des cookies.',
+    'cookies_accepter' => 'Accepter',
        
         'languages' => [
         'en' => 'English',

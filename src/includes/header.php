@@ -6,9 +6,9 @@
             </a>
         </ul>
         <ul>
-            <li><a href="<?php echo url('about'); ?>">À propos</a></li>
+            <li><a href="<?php echo url('about'); ?>"><?= htmlspecialchars($traductions['propos']) ?></a></li>
             <li><a href="<?php echo url('contact'); ?>">Contact</a></li>
-            <li><a href="<?php echo url('register'); ?>">Connexion</a></li>
+            <li><a href="<?php echo url('register'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></li>
         </ul>
     </nav>
 </header>

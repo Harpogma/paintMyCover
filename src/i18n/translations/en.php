@@ -17,6 +17,8 @@ return [
     'description' => 'is a command manager for album covers.',
     'team' => 'The team',
     'envoyer' => 'Send',
+    'cookies_message' => 'This site uses cookies.',
+    'cookies_accepter' => 'Accept',
 
     'languages' => [
         'en' => 'English',
