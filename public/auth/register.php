@@ -1,8 +1,7 @@
 <?php
 require_once __DIR__ . '/../../src/config/config.php';
 require_once __DIR__ . '/../../src/i18n/load-translation.php';
-
-const DATABASE_FILE = __DIR__ . '/../../src/classes/Database.php';
+require_once __DIR__ . '/../../src/utils/autoloader.php';
 
 session_start();
 
@@ -16,29 +15,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validation des données
     if (empty($username) || empty($password) || empty($confirmPassword)) {
-        $error = 'Tous les champs sont obligatoires.';
+        $errors = 'Tous les champs sont obligatoires.';
     } elseif ($password !== $confirmPassword) {
-        $error = 'Les mots de passe ne correspondent pas.';
+        $errors = 'Les mots de passe ne correspondent pas.';
     } elseif (strlen($password) < 8) {
-        $error = 'Le mot de passe doit contenir au moins 8 caractères.';
+        $errors = 'Le mot de passe doit contenir au moins 8 caractères.';
     } else {
         try {
             // Connexion à la base de données
-            $pdo = new PDO('sqlite:' . DATABASE_FILE);
+            $db = new Database();
+            $pdo = $db->getPdo();
 
             // Vérifier si l'utilisateur existe déjà
-            $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
+            $stmt = $pdo->prepare('SELECT * FROM user WHERE username = :username');
             $stmt->execute(['username' => $username]);
             $user = $stmt->fetch();
 
             if ($user) {
-                $error = 'Ce nom d\'utilisateur est déjà pris.';
+                $errors = 'Ce nom d\'utilisateur est déjà pris.';
             } else {
                 // Hacher le mot de passe
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
                 // Insérer le nouvel utilisateur
-                $stmt = $pdo->prepare('INSERT INTO users (username, password, role) VALUES (:username, :password, :role)');
+                $stmt = $pdo->prepare('INSERT INTO user (username, password, role) VALUES (:username, :password, :role)');
                 $stmt->execute([
                     'username' => $username,
                     'password' => $hashedPassword,
@@ -48,9 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $success = 'Compte créé avec succès ! Vous pouvez maintenant vous connecter.';
             }
         } catch (PDOException $e) {
-            $error = 'Erreur lors de la création du compte : ' . $e->getMessage();
+            $errors = 'Erreur lors de la création du compte : ' . $e->getMessage();
         }
-    git}
+    }
+
+    $stmt = $pdo->query("DESCRIBE user");
+    $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    print_r($columns);
 }
 
 ?>
@@ -74,13 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main class="container">
         <h1>Créer un compte</h1>
 
-        <?php if ($error) { ?>
-            <p><strong>Erreur :</strong> <?= htmlspecialchars($error) ?></p>
+        <?php if ($errors) { ?>
+            <p><strong>Erreur :</strong> <?= htmlspecialchars($errors) ?></p>
         <?php } ?>
 
         <?php if ($success) { ?>
             <p><strong>Succès :</strong> <?= htmlspecialchars($success) ?></p>
-            <p><a href="login.php">Se connecter maintenant</a></p>
+            <p><a href="<?php echo url('login'); ?>)">Se connecter maintenant</a></p>
         <?php } ?>
 
         <form method="post">
@@ -102,9 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Créer mon compte</button>
         </form>
 
-        <p>Vous avez déjà un compte ? <a href="login.php">Se connecter</a></p>
+        <p>Vous avez déjà un compte ? <a href="<?php echo url('login'); ?>">Se connecter</a></p>
 
-        <p><a href="index.php">Retour à l'accueil</a></p>
+        <p><a href="<?php echo url('index'); ?>">Retour à l'accueil</a></p>
     </main>
 
     <?php require_once __DIR__ . "/../../src/includes/footer.php"; ?>
