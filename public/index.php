@@ -1,5 +1,7 @@
 <?php
-// Inclusion de l'utilitaire de chargement des traductions
+
+global $traductions;
+global $lang;
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
 
@@ -8,8 +10,6 @@ const COOKIE_LIFETIME = (30 * 24 * 60 * 60);
 const DEFAULT_LANG = 'fr';
 
 $lang = $_COOKIE[COOKIE_NAME] ?? DEFAULT_LANG;
-
-$traductions = loadTranslation($lang);
 
 // changer langue préférée
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -49,7 +49,7 @@ $albums = [
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-    <title><?= htmlspecialchars($traductions['title']) ?></title>
+    <title><?php echo htmlspecialchars($traductions['title']) ?></title>
 </head>
 
 <body>

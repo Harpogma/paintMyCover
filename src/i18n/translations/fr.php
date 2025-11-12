@@ -1,26 +1,27 @@
 <?php
 return [
-    'title' => "Page d'accueil | PaintMyCover",
-    'accueilTitre' => "Bienvenue sur la page d'accueil de PaintMyCover.",
-    'accueil' => 'Accueil',
-    'connexion' => "Se connecter",
-    'compte' => "Créer un compte",
-    'nom' => "Nom",
-    'mdp' => "Mot de passe",
-    'confirmer_mdp' => "Confirmer le mot de passe",
-    'membre' => "Déjà membre ?",
-    'choose_language' => 'Choisissez votre langue de préférence:',
-    'outils' => 'Aller à la gestion des outils',
-    'proposTitre' => 'À Propos - PaintMyCover',
-    'propos' => 'À Propos',
-    'descriptionTitre' => 'Description du Projet',
-    'description' => "est un gestionnaire de commandes de tableaux d'albums.",
-    'team' => "L'équipe",
-    'envoyer' => 'Envoyer',
-       
-        'languages' => [
-        'en' => 'English',
-        'fr' => 'French (Français)',
+    "title" => "Page d'accueil | PaintMyCover",
+    "accueilTitre" => "Bienvenue sur la page d'accueil de PaintMyCover.",
+    "accueil" => "Accueil",
+    "connexion" => "Se connecter",
+    "compte" => "Créer un compte",
+    "nom" => "Nom",
+    "mdp" => "Mot de passe",
+    "confirmer_mdp" => "Confirmer le mot de passe",
+    "membre" => "Déjà membre ?",
+    "choose_language" => "Choisissez votre langue de préférence:",
+    "outils" => "Aller à la gestion des outils",
+    "proposTitre" => "À Propos - PaintMyCover",
+    "propos" => "À Propos",
+    "descriptionTitre" => "Description du Projet",
+    "description" => "est un gestionnaire de commandes de tableaux d'albums.",
+    "team" => "L'équipe",
+    "envoyer" => "Envoyer",
+
+    "languages" => [
+        "en" => "English",
+        "fr" => "French (Français)"
     ],
-    'submit' => 'Changer la langue',
+
+    "submit" => "Changer la langue"
 ];

@@ -51,10 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors = 'Erreur lors de la création du compte : ' . $e->getMessage();
         }
     }
-
-    $stmt = $pdo->query("DESCRIBE user");
-    $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
-    print_r($columns);
 }
 
 ?>
