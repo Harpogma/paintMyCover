@@ -1,4 +1,11 @@
 <?php
+require_once __DIR__ . '/../utils/cookie-manager.php';
+
+const DEFAULT_LANG = 'fr';
+
+// Récupérer la langue du cookie ou utilise celle par défaut
+$lang = CookieManager::getLanguage() ?? DEFAULT_LANG;
+
 function loadTranslation($lang) {
     $lang_file = __DIR__ . "/translations/{$lang}.php";
 
@@ -7,5 +14,7 @@ function loadTranslation($lang) {
         $lang_file = __DIR__ . "/translations/fr.php";
     }
 
-    return require_once $lang_file;
+    return require $lang_file;
 }
+
+$traductions = loadTranslation($lang);

@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../src/i18n/load-translation.php';
-require_once '/../src/utils/autoloader.php';
+require_once __DIR__ . '/../src/utils/autoloader.php';
+require_once __DIR__ . '/../src/utils/cookie-manager.php';
+require_once __DIR__ . '/../src/config/config.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +12,7 @@ require_once '/../src/utils/autoloader.php';
     <title><?= htmlspecialchars($traductions['proposTitre']) ?></title>
     <link rel="stylesheet" href="assets/css/custom.css">
     </head>
+<?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
 <body>
     <header>
         <nav>

@@ -1,7 +1,7 @@
 <?php 
-
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
+require_once __DIR__ . '/../src/utils/cookie-manager.php';
 
 
 ?>
@@ -20,7 +20,7 @@ require_once __DIR__ . '/../src/config/config.php';
 
   <title><?= htmlspecialchars($traductions['title']) ?></title>
 </head>
-
+<?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
 <body>
 
   <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
