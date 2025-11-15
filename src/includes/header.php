@@ -8,7 +8,7 @@
         <ul>
             <li><a href="<?php echo url('about'); ?>"><?= htmlspecialchars($traductions['propos']) ?></a></li>
             <li><a href="<?php echo url('contact'); ?>">Contact</a></li>
-            <li><a href="<?php echo url('register'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></li>
+            <li><a href="<?php echo url('auth/register'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></li>
         </ul>
     </nav>
 </header>

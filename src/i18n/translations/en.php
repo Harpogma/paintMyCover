@@ -8,7 +8,7 @@ return [
    'nom' => "Name",
     'mdp' => "Password",
     'confirmer_mdp' => "Confirm the password",
-    'membre' => "Already member ?",
+    'membre' => "Already member? ",
     'choose_language' => 'Choose your preferred language:',
     'outils' => 'Go to tool management',
     'proposTitre' => 'About - PaintMyCover',
