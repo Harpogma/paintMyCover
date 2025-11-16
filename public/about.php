@@ -21,8 +21,9 @@ require_once __DIR__ . '/../src/config/config.php';
     <title><?= htmlspecialchars($traductions['titre']) ?></title>
 </head>
     </head>
-<?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
+
 <body>
+    <?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
     <header>
         <nav>
             <a href="index.php"><?= htmlspecialchars($traductions['accueil']) ?></a> |

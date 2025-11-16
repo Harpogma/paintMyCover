@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 // Inclusion de l'utilitaire de chargement des traductions
 require_once __DIR__ . '/../src/utils/cookie-manager.php';
 require_once __DIR__ . '/../src/i18n/load-translation.php';
@@ -12,7 +12,7 @@ $lang = CookieManager::getLanguage() ?? DEFAULT_LANG;
 $traductions = loadTranslation($lang);
 
 // Changer langue préférée
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['language'])) {
     $lang = $_POST['language'] ?? DEFAULT_LANG;
     CookieManager::setLanguage($lang);
     header('Location: index.php');
@@ -50,9 +50,10 @@ $albums = [
 
     <title><?= htmlspecialchars($traductions['titre']) ?></title>
 </head>
-<?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
+
 <body>
     <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
+    <?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
 
     <div>
         <form method="post" action="index.php">
