@@ -1,4 +1,4 @@
-<?
+<?php
 class Database implements IDatabase {
     const DATABASE_CONFIGURATION_FILE = __DIR__ . '/../config/database.ini';
 
@@ -44,8 +44,8 @@ class Database implements IDatabase {
             id INT AUTO_INCREMENT PRIMARY KEY,
             album_name VARCHAR(255) NOT NULL,
             artist_name VARCHAR(255) NOT NULL,
-            canvas_size VARCHAR(100) NOT NULL,
-            image VARCHAR(50) NOT NULL,
+            canva_size VARCHAR(100) NOT NULL,
+            image_path VARCHAR(50) NOT NULL,
             price_range VARCHAR(50) NOT NULL
         );";
 
