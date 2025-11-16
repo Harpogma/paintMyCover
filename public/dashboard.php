@@ -4,9 +4,12 @@ require_once __DIR__ . '/../src/config/config.php';
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/utils/autoloader.php';
 require_once __DIR__ . '/../src/config/require_login.php';
+
+require_login('user');
+
 global $traductions;
 global $lang;
-var_dump($_SESSION);
+
 ?>
 
 

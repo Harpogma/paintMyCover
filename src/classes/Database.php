@@ -42,13 +42,11 @@ class Database implements IDatabase {
         //table commande tableaux, photo??
         $covers = "CREATE TABLE IF NOT EXISTS cover (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT,
             album_name VARCHAR(255) NOT NULL,
             artist_name VARCHAR(255) NOT NULL,
             canvas_size VARCHAR(100) NOT NULL,
             image VARCHAR(50) NOT NULL,
-            price_range VARCHAR(50) NOT NULL,
-            FOREIGN KEY (user_id) REFERENCES user(id)
+            price_range VARCHAR(50) NOT NULL
         );";
 
         $stmt = $this->pdo->prepare($covers);

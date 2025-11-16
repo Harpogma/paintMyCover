@@ -1,14 +1,12 @@
 <?php
+session_start();
+
 require_once __DIR__ . '/../src/config/config.php';
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/utils/autoloader.php';
-session_start();
+require_once __DIR__ . '/../src/config/require_login.php';
 
-if ($_SESSION['role'] !== 'admin') {
-    http_response_code(403);
-    echo "Access denied";
-    exit();
-}
+require_login('admin');
 
 global $traductions;
 global $lang;

@@ -1,17 +1,20 @@
 <?php
+session_start();
+
 require_once __DIR__ . '/../../src/config/config.php';
 require_once __DIR__ . '/../../src/i18n/load-translation.php';
 require_once __DIR__ . '/../../src/utils/autoloader.php';
 global $traductions;
 global $lang;
 
-session_start();
-
-// Si l'utilisateur est déjà connecté, le rediriger vers l'accueil
 if (isset($_SESSION['user_id'])) {
-    header('Location: ../dashboard.php');
-
-    exit();
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: adminDashboard.php");
+        exit();
+    } else {
+        header("Location: dashboard.php");
+        exit();
+    }
 }
 
 $error = '';
