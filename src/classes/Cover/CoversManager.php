@@ -30,12 +30,11 @@ class CoversManager implements ICoversManager {
         $covers = array_map(function ($coverData) {
             return new Cover(
                 $coverData['id'],
-                $coverData['userId'],
-                $coverData['albumName'],
-                $coverData['artistName'],
-                $coverData['canvaSize'],
-                $coverData['imagePath'],
-                $coverData['priceRange']
+                $coverData['album_name'],
+                $coverData['artist_name'],
+                $coverData['canva_size'],
+                $coverData['image_path'],
+                $coverData['price_range']
             );
         }, $covers);
 
@@ -45,17 +44,17 @@ class CoversManager implements ICoversManager {
 
     public function addCover(Cover $cover): int {
         // Définition de la requête SQL pour ajouter une cover
-        $sql = "INSERT INTO covers (album_name, artist_name, canva_size, image_path, price_range) VALUES (:albumName, :artistName, :canvaSize, :imagePath, :priceRange)";
+        $sql = "INSERT INTO cover (album_name, artist_name, canva_size, image_path, price_range) VALUES (:albumName, :artistName, :canvaSize, :imagePath, :priceRange)";
 
         // Préparation de la requête SQL
         $stmt = $this->database->getPdo()->prepare($sql);
 
         // Lien avec les paramètres
-        $stmt->bindValue(':name', $cover->getAlbumName());
-        $stmt->bindValue(':type', $cover->getArtistName());
-        $stmt->bindValue(':type', $cover->getCanvaSize());
-        $stmt->bindValue(':type', $cover->getImagePath());
-        $stmt->bindValue(':type', $cover->getPriceRange());
+        $stmt->bindValue(':albumName',  $cover->getAlbumName());
+        $stmt->bindValue(':artistName', $cover->getArtistName());
+        $stmt->bindValue(':canvaSize',  $cover->getCanvaSize());
+        $stmt->bindValue(':imagePath',  $cover->getImagePath());
+        $stmt->bindValue(':priceRange', $cover->getPriceRange());
 
         // Exécution de la requête SQL pour ajouter un outil
         $stmt->execute();
@@ -66,6 +65,17 @@ class CoversManager implements ICoversManager {
         // Retour de l'identifiant de l'outil ajouté.
         return $coverId;
     }
+
+    public function assignCoverToUser(int $coverId, int $userId): void {
+        $sql = "INSERT INTO user_cover (user_id, cover_id) VALUES (:userId, :coverId)";
+        $stmt = $this->database->getPdo()->prepare($sql);
+
+        $stmt->bindValue(':userId',  $userId);
+        $stmt->bindValue(':coverId', $coverId);
+
+        $stmt->execute();
+    }
+
 
     public function removeCover(int $id): bool {
         // Définition de la requête SQL pour supprimer une cover

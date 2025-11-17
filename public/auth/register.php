@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php if ($success) { ?>
             <p><strong>Succès :</strong> <?= htmlspecialchars($success) ?></p>
-            <p><a href="<?php echo url('login'); ?>)">Se connecter maintenant</a></p>
+            <p><a href="<?php echo url('auth/login'); ?>)">Se connecter maintenant</a></p>
         <?php } ?>
 
         <form method="post">
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Créer mon compte</button>
         </form>
 
-        <p>Vous avez déjà un compte ? <a href="<?php echo url('login'); ?>">Se connecter</a></p>
+        <p>Vous avez déjà un compte ? <a href="<?php echo url('auth/login'); ?>">Se connecter</a></p>
 
         <p><a href="<?php echo url('index'); ?>">Retour à l'accueil</a></p>
     </main>

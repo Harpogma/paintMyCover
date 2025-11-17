@@ -3,6 +3,7 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 // Inclusion de l'utilitaire de chargement des traductions
+require_once __DIR__ . '/../src/utils/autoloader.php';
 require_once __DIR__ . '/../src/utils/cookie-manager.php';
 require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
@@ -19,19 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['language'])) {
     exit;
 } 
 
-$baseImg = "img/";
-$albums = [
-    ["title" => "Un verano sin ti", "artist" => "Bad Bunny", "img" => $baseImg . "phpBadBunny.jpg"],
-    ["title" => "Whole Lotta Red", "artist" => "Playboi Carti", "img" => $baseImg . "phpCarti.jpg"],
-    ["title" => "Unfinished Business 1987", "artist" => "Dj Spanish Fly", "img" => $baseImg . "phpDj.jpg"],
-    ["title" => "Tant qu'on est là", "artist" => "Hugo TSR", "img" => $baseImg . "phphugotsr.jpg"],
-    ["title" => "LAÏLA", "artist" => "Khali", "img" => $baseImg . "phpKhali.jpg"],
-    ["title" => "Etoile Noire", "artist" => "Luv Resval", "img" => $baseImg . "phpLuv.jpg"],
-    ["title" => "Novembre", "artist" => "Moji X Sboy", "img" => $baseImg . "phpMoji.jpg"],
-    ["title" => "ÇA VA ALLER", "artist" => "NeS", "img" => $baseImg . "phpNes.jpg"],
-    ["title" => "SANTIAGO", "artist" => "Russ", "img" => $baseImg . "phpRuss.jpg"],
-    ["title" => "Une main lave l'autre", "artist" => "Alpha Wann", "img" => $baseImg . "phpUMLA.jpg"]
-];
+use Cover\CoversManager;
+use Cover\Cover;
+
+$coversManager = new CoversManager();
+$covers = $coversManager->getCovers();
+
 ?>
 
 
@@ -73,26 +67,16 @@ $albums = [
 
 
         <h2>Covers</h2>
-        <main class="container">
-            <?php
-            foreach ($albums as $album) {
-                echo '
-                <article class="album-card">
-                <figure>
-                    <img src="' . htmlspecialchars($album['img']) . '" alt="' . htmlspecialchars($album['title']) . '">
-                    <figcaption>
-                    <p class="album-title">' . htmlspecialchars($album['title']) . '</p>
-                    <p class="artist-name">' . htmlspecialchars($album['artist']) . '</p>
-                    </figcaption>
-                </figure>
-                </article>';
-            }
-            ?>
+        <main>
+            <?php foreach ($covers as $cover) : ?>
+                <div class="cover-card">
+                    <img src="img/<?= htmlspecialchars($cover->getImagePath()) ?>" alt="Cover image" width="200">
+                    <h4><?= htmlspecialchars($cover->getAlbumName()) ?></h4>
+                    <p>Artist: <?= htmlspecialchars($cover->getArtistName()) ?></p>
+                </div>
+            <?php endforeach; ?>
         </main>
 
-        <p><a href="../public/cover/index.php"><button><?= htmlspecialchars($traductions['outils']) ?></button></a></p>
-
-    </main>
 
     <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
 
