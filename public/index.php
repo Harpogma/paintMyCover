@@ -72,7 +72,7 @@ $covers = $coversManager->getCovers();
                 <div class="cover-card">
                     <img src="img/<?= htmlspecialchars($cover->getImagePath()) ?>" alt="Cover image" width="200">
                     <h4><?= htmlspecialchars($cover->getAlbumName()) ?></h4>
-                    <p>Artist: <?= htmlspecialchars($cover->getArtistName()) ?></p>
+                    <p><?= htmlspecialchars($cover->getArtistName()) ?></p>
                 </div>
             <?php endforeach; ?>
         </main>

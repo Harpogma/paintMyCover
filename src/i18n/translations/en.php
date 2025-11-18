@@ -1,6 +1,6 @@
 <?php
 return [
-    "title" => "Home Page | PaintMyCover",
+    "titre" => "Home Page | PaintMyCover",
     "accueilTitre" => "Welcome to the PaintMyCover homepage.",
     "accueil" => "Home",
     "connexion" => "Log in",
@@ -19,6 +19,7 @@ return [
     "envoyer" => "Send",
     "cookies_message" => "This site uses cookies.",
     "cookies_accepter" => "Accept",
+    "deconnexion" => "Deconnexion",
 
     "languages" => [
         "en" => "English",
