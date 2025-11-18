@@ -3,19 +3,71 @@ require_once __DIR__ . '/../../src/config/config.php';
 require_once __DIR__ . '/../../src/i18n/load-translation.php';
 require_once __DIR__ . '/../../src/utils/autoloader.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+global $traductions;
+global $lang;
 session_start();
+
+//const MAIL_CONFIGURATION_FILE = __DIR__ . '/../../src/config/mail.ini';
+//$config = parse_ini_file(MAIL_CONFIGURATION_FILE, true);
+//
+//
+//if (!$config) {
+//    throw new Exception("Erreur lors de la lecture du fichier de configuration : " . MAIL_CONFIGURATION_FILE);
+//}
+//
+//$host = $config['host'];
+//$port = filter_var($config['port'], FILTER_VALIDATE_INT);
+//$authentication = filter_var($config['authentication'], FILTER_VALIDATE_BOOLEAN);
+//$username = $config['username'];
+//$password = $config['password'];
+//$from_email = $config['from_email'];
+//$from_name = $config['from_name'];
+//
+//$mail = new PHPMailer(true);
+//
+//try {
+//    $mail->isSMTP();
+//    $mail->Host = $host;
+//    $mail->Port = $port;
+//    $mail->SMTPAuth = $authentication;
+//    $mail->Username = $username;
+//    $mail->Password = $password;
+//    $mail->CharSet = 'UTF-8';
+//    $mail->Encoding = 'base64';
+//
+//    $mail->setFrom($from_email, $from_name);
+//    $mail->addAddress('contact@paintmycover.ch', 'PaintMyCover');
+//
+//    $mail->isHTML(true);
+//    $mail->Subject = 'subject test mail';
+//    $mail->Body = 'body test mail';
+//    $mail->AltBody = 'alt body test mail';
+//
+//    $mail->send();
+//
+//    echo('Mail has been sent');
+//} catch (Exception $e) {
+//    echo("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+//}
+
 
 $errors = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
+    $mail = $_POST['mail'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
 
     // Validation des données
-    if (empty($username) || empty($password) || empty($confirmPassword)) {
+    if (empty($username) || empty($mail) || empty($password) || empty($confirmPassword)) {
         $errors = 'Tous les champs sont obligatoires.';
+    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        $errors = 'Veuillez entrer une adresse e-mail valide.';
     } elseif ($password !== $confirmPassword) {
         $errors = 'Les mots de passe ne correspondent pas.';
     } elseif (strlen($password) < 8) {
@@ -38,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
                 // Insérer le nouvel utilisateur
-                $stmt = $pdo->prepare('INSERT INTO user (username, password, role) VALUES (:username, :password, :role)');
+                $stmt = $pdo->prepare('INSERT INTO user (username, email, password, role) VALUES (:username, :mail, :password, :role)');
                 $stmt->execute([
                     'username' => $username,
                     'password' => $hashedPassword,
@@ -87,6 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="username">
                 Nom d'utilisateur
                 <input type="text" id="username" name="username" required autofocus>
+            </label>
+
+            <label for="mail">
+                Adresse e-mail
+                <input type="email" id="mail" name="mail" required>
             </label>
 
             <label for="password">

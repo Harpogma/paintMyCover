@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 // Inclusion de l'utilitaire de chargement des traductions
 require_once __DIR__ . '/../src/utils/autoloader.php';
 require_once __DIR__ . '/../src/utils/cookie-manager.php';

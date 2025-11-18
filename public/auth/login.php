@@ -9,10 +9,10 @@ global $lang;
 
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['role'] === 'admin') {
-        header("Location: adminDashboard.php");
+        header("Location: /../adminDashboard.php");
         exit();
     } else {
-        header("Location: dashboard.php");
+        header("Location: /../dashboard.php");
         exit();
     }
 }
