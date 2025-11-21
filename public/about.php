@@ -24,13 +24,7 @@ require_once __DIR__ . '/../src/config/config.php';
 
 <body>
     <?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
-    <header>
-        <nav>
-            <a href="index.php"><?= htmlspecialchars($traductions['accueil']) ?></a> |
-            <a href="about.php"><?= htmlspecialchars($traductions['propos']) ?></a> |
-            <a href="login.php"><?= htmlspecialchars($traductions['connexion']) ?></a>
-            </nav>
-    </header>
+        <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
 
     <main class="container mt-4">
         <h1><?= htmlspecialchars($traductions['proposTitre']) ?></h1>
@@ -38,7 +32,7 @@ require_once __DIR__ . '/../src/config/config.php';
 
         <section>
             <h2><?= htmlspecialchars($traductions['descriptionTitre']) ?></h2>
-            <p><strong>PaintMyCover</strong> <?= htmlspecialchars($traductions['descriptionTitre']) ?></p>
+            <p><strong>PaintMyCover</strong> <?= htmlspecialchars($traductions['description']) ?></p>
 
         <section>
             <h2><?= htmlspecialchars($traductions['equipe']) ?></h2>

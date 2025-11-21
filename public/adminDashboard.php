@@ -26,15 +26,27 @@ global $lang;
 </head>
 
 <body>
-<?php require_once __DIR__ . "/../src/includes/header.php"; ?>
-
-
-<h1>this is your admin dashboard</h1>
-
-<?php require_once __DIR__ . "/cover/create.php"; ?>
-
-
-<?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
-
+    <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
+    
+    <main class="container">
+        <h1>This is your AdminDashbord</h1>
+        <p>Bienvenue, <?= htmlspecialchars($_SESSION['username']) ?> (Admin)</p>
+        
+        <div class="grid">
+            <article>
+                <h2>Gérer les Covers</h2>
+                <p>Ajouter, modifier ou supprimer des covers</p>
+                <a href="<?php echo url('admin/manageCovers'); ?>" role="button">Gérer les Covers</a>
+            </article>
+            
+            <article>
+                <h2>Gérer les Utilisateurs</h2>
+                <p>Voir les utilisateurs et modifier leurs rôles</p>
+                <a href="<?php echo url('admin/manageUsers'); ?>" role="button">Gérer les Utilisateurs</a>
+            </article>
+        </div>
+    </main>
+    
+    <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
 </body>
 </html>
