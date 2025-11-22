@@ -5,13 +5,15 @@ require_once __DIR__ . '/../../src/utils/autoloader.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+const MAIL_CONFIGURATION_FILE = __DIR__ . '/../../src/config/mail.ini';
 
 global $traductions;
 global $lang;
 session_start();
 
 //const MAIL_CONFIGURATION_FILE = __DIR__ . '/../../src/config/mail.ini';
-//$config = parse_ini_file(MAIL_CONFIGURATION_FILE, true);
+//$config = parse_ini_file(MAIL_CONFIGURATION_FILE);
+//
 //
 //
 //if (!$config) {
@@ -27,6 +29,7 @@ session_start();
 //$from_name = $config['from_name'];
 //
 //$mail = new PHPMailer(true);
+//$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 //
 //try {
 //    $mail->isSMTP();
@@ -54,19 +57,22 @@ session_start();
 //}
 
 
+
+
+
 $errors = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
-    $mail = $_POST['mail'] ?? '';
+    $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
 
     // Validation des données
-    if (empty($username) || empty($mail) || empty($password) || empty($confirmPassword)) {
+    if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
         $errors = 'Tous les champs sont obligatoires.';
-    } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors = 'Veuillez entrer une adresse e-mail valide.';
     } elseif ($password !== $confirmPassword) {
         $errors = 'Les mots de passe ne correspondent pas.';
@@ -90,12 +96,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
                 // Insérer le nouvel utilisateur
-                $stmt = $pdo->prepare('INSERT INTO user (username, email, password, role) VALUES (:username, :mail, :password, :role)');
+                $stmt = $pdo->prepare('INSERT INTO user (username, email, password, role) VALUES (:username, :email, :password, :role)');
                 $stmt->execute([
                     'username' => $username,
+                    'email' => $email,
                     'password' => $hashedPassword,
                     'role' => 'user' // Par défaut, les nouveaux utilisateurs ont le rôle "user"
                 ]);
+
+                $config = parse_ini_file(MAIL_CONFIGURATION_FILE);
+
+                if (!$config) {
+                    throw new Exception("Erreur lors de la lecture du fichier de configuration : " . MAIL_CONFIGURATION_FILE);
+                }
+
+                $host = $config['host'];
+                $port = filter_var($config['port'], FILTER_VALIDATE_INT);
+                $authentication = filter_var($config['authentication'], FILTER_VALIDATE_BOOLEAN);
+                $usernameMail = $config['username'];
+                $password = $config['password'];
+                $from_email = $config['from_email'];
+                $from_name = $config['from_name'];
+
+                $mail = new PHPMailer(true);
+
+                try {
+                    $mail->isSMTP();
+                    $mail->Host = $host;
+                    $mail->Port = $port;
+                    $mail->SMTPAuth = $authentication;
+                    $mail->Username = $usernameMail;
+                    $mail->Password = $password;
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // <--- required for port 465
+                    $mail->CharSet = 'UTF-8';
+                    $mail->Encoding = 'base64';
+
+                    $mail->setFrom($from_email, $from_name);
+                    $mail->addAddress($email, $username);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Bienvenue sur PaintMyCover';
+                    $usernameSafe = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+                    $mail->Body = <<<HTML
+                        <h1>Bonjour $usernameSafe!</h1>
+                        <p>Bienvenue sur PaintMyCover :)</p>
+                        <p>Clique <a href="http://paintmycover/public/auth/login">ici</a> pour te connecter !</p>
+                        HTML;
+                    $mail->AltBody = "Bonjour $usernameSafe!\nBienvenue sur PaintMyCover :)\nConnecte-toi ici: http://paintmycover/public/auth/login\nÀ bientôt !";
+
+                    $mail->send();
+
+
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
 
                 $success = 'Compte créé avec succès ! Vous pouvez maintenant vous connecter.';
             }
@@ -141,9 +195,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="username" name="username" required autofocus>
             </label>
 
-            <label for="mail">
+            <label for="email">
                 Adresse e-mail
-                <input type="email" id="mail" name="mail" required>
+                <input type="email" id="email" name="email" required>
             </label>
 
             <label for="password">
