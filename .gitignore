@@ -22,6 +22,7 @@
 .ionide
 
 database.ini
+mail.ini
 
 
 ### JetBrains ###
