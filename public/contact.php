@@ -18,7 +18,7 @@ require_once __DIR__ . '/../src/utils/cookie-manager.php';
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-  <title><?= htmlspecialchars($traductions['title']) ?></title>
+  <title><?= htmlspecialchars($traductions['titre']) ?></title>
 </head>
 <?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
 <body>
@@ -53,7 +53,7 @@ require_once __DIR__ . '/../src/utils/cookie-manager.php';
 
     <input
       type="submit"
-      value="<?= htmlspecialchars($traductions['envoyer']) ?>" />
+      value="<?= htmlspecialchars($traductions['enregistrer']) ?>" />
   </form>
   <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
 

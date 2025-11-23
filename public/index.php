@@ -11,7 +11,7 @@ $lang = CookieManager::getLanguage() ?? DEFAULT_LANG;
 $traductions = loadTranslation($lang);
 
 // Changer langue préférée
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['language'])) {
     $lang = $_POST['language'] ?? DEFAULT_LANG;
     CookieManager::setLanguage($lang);
     header('Location: index.php');
@@ -40,25 +40,26 @@ $covers = $coversManager->getCovers();
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-    <title><?= htmlspecialchars($traductions['title']) ?></title>
+    <title><?= htmlspecialchars($traductions['titre']) ?></title>
 </head>
-<?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
+
 <body>
     <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
+    <?php require_once __DIR__ . '/../src/includes/cookie-banner.php'; ?>
 
     <div>
         <form method="post" action="index.php">
-            <label for="language"><?= htmlspecialchars($traductions['choose_language']) ?></label>
+            <label for="language"><?= htmlspecialchars($traductions['choisir_langue']) ?></label>
             <select name="language" id="language">
                 <option value="fr" <?= $lang === 'fr' ? ' selected' : '' ?>><?= htmlspecialchars($traductions['languages']['fr']) ?></option>
                 <option value="en" <?= $lang === 'en' ? ' selected' : '' ?>><?= htmlspecialchars($traductions['languages']['en']) ?></option>
             </select>
-            <button type="submit"><?= htmlspecialchars($traductions['submit']) ?></button>
+            <button type="submit"><?= htmlspecialchars($traductions['envoyer']) ?></button>
         </form>
     </div>
 
     <main class="container">
-        <h1><?= htmlspecialchars($traductions['title']) ?></h1>
+        <h1><?= htmlspecialchars($traductions['titre']) ?></h1>
 
         <p><?= htmlspecialchars($traductions['accueilTitre']) ?></p>
 
@@ -69,7 +70,7 @@ $covers = $coversManager->getCovers();
                 <div class="cover-card">
                     <img src="img/<?= htmlspecialchars($cover->getImagePath()) ?>" alt="Cover image" width="200">
                     <h4><?= htmlspecialchars($cover->getAlbumName()) ?></h4>
-                    <p>Artist: <?= htmlspecialchars($cover->getArtistName()) ?></p>
+                    <p><?= htmlspecialchars($cover->getArtistName()) ?></p>
                 </div>
             <?php endforeach; ?>
         </main>
