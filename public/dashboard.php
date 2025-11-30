@@ -23,9 +23,9 @@ global $lang;
 <html lang="<?php echo htmlspecialchars($lang) ?>">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
     <title>Dashboard</title> <!--TODO add dashboard to translate files -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="<?php echo url('assets/css/custom.css'); ?>">
 </head>
 
 <body>
@@ -35,26 +35,29 @@ global $lang;
 <!--TODO add dashboard to translate files -->
 
 <main class="container">
-        <h1>this is your dashoboard/h1>
+        <h1>this is your dashoboard</h1>
         <p>Bienvenue, <?= htmlspecialchars($_SESSION['username']) ?></p>
         
-        <h2>Toutes les Covers Disponibles</h2>
+        <h2>Toutes les covers disponibles</h2>
         
         <?php if (empty($covers)): ?>
             <p>Aucun cover disponible pour le moment.</p>
         <?php else: ?>
-            <div class="grid">
-                <?php foreach ($covers as $cover): ?>
-                    <article>
-                        <img src="../img/<?= htmlspecialchars($cover->getImagePath()) ?>" 
-                             alt="<?= htmlspecialchars($cover->getAlbumName()) ?>" 
-                             style="width: 100%; height: auto;">
-                        <h3><?= htmlspecialchars($cover->getAlbumName()) ?></h3>
-                        <p><strong>Artiste:</strong> <?= htmlspecialchars($cover->getArtistName()) ?></p>
-                        <p><strong>Taille:</strong> <?= htmlspecialchars($cover->getCanvaSize()) ?></p>
-                        <p><strong>Prix:</strong> <?= htmlspecialchars($cover->getPriceRange()) ?></p>
-                    </article>
-                <?php endforeach; ?>
+        <div class="covers-grid">
+            <?php foreach ($covers as $cover): ?>
+                <div class="cover-card">
+                    <img src="../img/<?= htmlspecialchars($cover->getImagePath()) ?>" 
+                         alt="<?= htmlspecialchars($cover->getAlbumName()) ?>">
+                    <h4><?= htmlspecialchars($cover->getAlbumName()) ?></h4>
+                    <p><?= htmlspecialchars($cover->getArtistName()) ?></p>
+                    <p class="cover-details">
+                        <small>
+                            <strong>Taille:</strong> <?= htmlspecialchars($cover->getCanvaSize()) ?><br>
+                            <strong>Prix:</strong> <?= htmlspecialchars($cover->getPriceRange()) ?>
+                        </small>
+                    </p>
+                </div>
+            <?php endforeach; ?>
             </div>
         <?php endif; ?>
     </main>

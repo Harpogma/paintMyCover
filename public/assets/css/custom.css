@@ -9,5 +9,83 @@ body {
 }
 
 img {
-    size: 200px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Grille pour les covers - plus spécifique */
+.covers-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.cover-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid var(--pico-muted-border-color);
+    border-radius: var(--pico-border-radius);
+    transition: transform 0.2s ease;
+    background-color: var(--pico-card-background-color);
+}
+
+.cover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cover-card img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--pico-border-radius);
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+}
+
+.cover-card h4 {
+    margin: 0.5rem 0 0.25rem 0 !important;
+    font-size: 1rem;
+}
+
+.cover-card p {
+    margin: 0 !important;
+    color: var(--pico-muted-color);
+    font-size: 0.875rem;
+}
+
+.cover-details {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--pico-muted-border-color);
+}
+
+.cover-details small {
+    line-height: 1.6;
+}
+
+/* Responsive : 3 colonnes sur tablette */
+@media (max-width: 992px) {
+    .covers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Responsive : 2 colonnes sur mobile */
+@media (max-width: 768px) {
+    .covers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Responsive : 1 colonne sur petit mobile */
+@media (max-width: 480px) {
+    .covers-grid {
+        grid-template-columns: 1fr;
+    }
 }
