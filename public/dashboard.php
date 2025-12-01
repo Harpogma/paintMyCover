@@ -23,7 +23,7 @@ global $lang;
 <html lang="<?php echo htmlspecialchars($lang) ?>">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title> <!--TODO add dashboard to translate files -->
+    <title><?= htmlspecialchars($traductions['tableau_bordTitreUser']) ?></title> <!--TODO add dashboard to translate files -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <link rel="stylesheet" href="<?php echo url('assets/css/custom.css'); ?>">
 </head>
@@ -35,13 +35,13 @@ global $lang;
 <!--TODO add dashboard to translate files -->
 
 <main class="container">
-        <h1>this is your dashoboard</h1>
-        <p>Bienvenue, <?= htmlspecialchars($_SESSION['username']) ?></p>
+        <h1><?= htmlspecialchars($traductions['tableau_bordUser']) ?></h1>
+        <p><?= htmlspecialchars($traductions['bienvenue']) ?> <?= htmlspecialchars($_SESSION['username']) ?></p>
         
-        <h2>Toutes les covers disponibles</h2>
+        <h2><?= htmlspecialchars($traductions['cover_dispo']) ?></h2>
         
         <?php if (empty($covers)): ?>
-            <p>Aucun cover disponible pour le moment.</p>
+            <p><?= htmlspecialchars($traductions['pas_cover']) ?></p>
         <?php else: ?>
         <div class="covers-grid">
             <?php foreach ($covers as $cover): ?>
@@ -52,8 +52,8 @@ global $lang;
                     <p><?= htmlspecialchars($cover->getArtistName()) ?></p>
                     <p class="cover-details">
                         <small>
-                            <strong>Taille:</strong> <?= htmlspecialchars($cover->getCanvaSize()) ?><br>
-                            <strong>Prix:</strong> <?= htmlspecialchars($cover->getPriceRange()) ?>
+                            <strong><?= htmlspecialchars($traductions['taille']) ?>:</strong> <?= htmlspecialchars($cover->getCanvaSize()) ?><br>
+                            <strong><?= htmlspecialchars($traductions['prix']) ?>:</strong> <?= htmlspecialchars($cover->getPriceRange()) ?>
                         </small>
                     </p>
                 </div>

@@ -57,15 +57,15 @@ $users = $usersManager->getAllUsers();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
-    <title>Gestion des Utilisateurs</title>
+    <title><?= htmlspecialchars($traductions['gestionUtilisateurs']) ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 <body>
     <?php require_once __DIR__ . "/../../src/includes/header.php"; ?>
     
     <main class="container">
-        <h1>Gestion des Utilisateurs</h1>
-        <p><a href="<?php echo url('adminDashboard'); ?>">← Retour au tableau de bord</a></p>
+        <h1><?= htmlspecialchars($traductions['gestionUtilisateurs']) ?></h1>
+        <p><a href="<?php echo url('adminDashboard'); ?>">← <?= htmlspecialchars($traductions['retour_tableauBord']) ?></a></p>
         
         <?php if ($message): ?>
             <article style="background-color: #d4edda; color: #155724; padding: 1rem;">
@@ -79,18 +79,18 @@ $users = $usersManager->getAllUsers();
             </article>
         <?php endif; ?>
         
-        <h2>Liste des Utilisateurs</h2>
+        <h2><?= htmlspecialchars($traductions['liste_utilisateurs']) ?></h2>
         
         <?php if (empty($users)): ?>
-            <p>Aucun utilisateur trouvé.</p>
+            <p><?= htmlspecialchars($traductions['pas_utilisateur']) ?></p>
         <?php else: ?>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nom d'utilisateur</th>
+                        <th><?= htmlspecialchars($traductions['nom_utilisateur']) ?></th>
                         <th>Email</th>
-                        <th>Rôle</th>
+                        <th><?= htmlspecialchars($traductions['role']) ?></th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -116,10 +116,10 @@ $users = $usersManager->getAllUsers();
                                     <form method="post" style="display: inline;" 
                                           onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
                                         <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                        <button type="submit" name="delete_user" class="secondary">Supprimer</button>
+                                        <button type="submit" name="delete_user" class="secondary"><?= htmlspecialchars($traductions['supprimer']) ?></button>
                                     </form>
                                 <?php else: ?>
-                                    <em>(Vous)</em>
+                                    <em><?= htmlspecialchars($traductions['vous']) ?></em>
                                 <?php endif; ?>
                             </td>
                         </tr>

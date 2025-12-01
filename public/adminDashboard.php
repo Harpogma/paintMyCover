@@ -21,7 +21,7 @@ global $lang;
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
-    <title>Admin Dashboard</title> <!--TODO add admin dashboard to translate files -->
+    <title><?= htmlspecialchars($traductions['tableau_bordTitre']) ?></title> <!--TODO add admin dashboard to translate files -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 
@@ -29,20 +29,20 @@ global $lang;
     <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
     
     <main class="container">
-        <h1>This is your AdminDashbord</h1>
-        <p>Bienvenue, <?= htmlspecialchars($_SESSION['username']) ?> (Admin)</p>
+        <h1><?= htmlspecialchars($traductions['tableau_bord']) ?></h1>
+        <p><?= htmlspecialchars($traductions['bienvenue']) ?> <?= htmlspecialchars($_SESSION['username']) ?> (Admin)</p>
         
         <div class="grid">
             <article>
-                <h2>Gérer les Covers</h2>
-                <p>Ajouter, modifier ou supprimer des covers</p>
-                <a href="<?php echo url('admin/manageCovers'); ?>" role="button">Gérer les Covers</a>
+                <h2><?= htmlspecialchars($traductions['gererCovers']) ?></h2>
+                <p><?= htmlspecialchars($traductions['gererCovers_descr']) ?></p>
+                <a href="<?php echo url('admin/manageCovers'); ?>" role="button"><?= htmlspecialchars($traductions['gererCovers']) ?></a>
             </article>
             
             <article>
-                <h2>Gérer les Utilisateurs</h2>
-                <p>Voir les utilisateurs et modifier leurs rôles</p>
-                <a href="<?php echo url('admin/manageUsers'); ?>" role="button">Gérer les Utilisateurs</a>
+                <h2><?= htmlspecialchars($traductions['gererUtilisateurs']) ?></h2>
+                <p><?= htmlspecialchars($traductions['gererUtilisateurs_descr']) ?></p>
+                <a href="<?php echo url('admin/manageUsers'); ?>" role="button"><?= htmlspecialchars($traductions['gererUtilisateurs']) ?></a>
             </article>
         </div>
     </main>

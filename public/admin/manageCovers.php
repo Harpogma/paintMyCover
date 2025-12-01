@@ -39,8 +39,8 @@ $covers = $coversManager->getCovers();
     <?php require_once __DIR__ . "/../../src/includes/header.php"; ?>
     
     <main class="container">
-        <h1>Gestion des Covers</h1>
-        <p><a href="<?php echo url('adminDashboard'); ?>">← Retour au tableau de bord</a></p>
+        <h1><?= htmlspecialchars($traductions['gestionCovers']) ?></h1>
+        <p><a href="<?php echo url('adminDashboard'); ?>">← <?= htmlspecialchars($traductions['retour_tableauBord']) ?></a></p>
         
         <?php if ($message): ?>
             <article style="background-color: #d4edda; color: #155724; padding: 1rem;">
@@ -54,21 +54,21 @@ $covers = $coversManager->getCovers();
             </article>
         <?php endif; ?>
         
-        <p><a href="<?php echo url('cover/create'); ?>" role="button">+ Ajouter un nouveau cover</a></p>
+        <p><a href="<?php echo url('cover/create'); ?>" role="button">+ <?= htmlspecialchars($traductions['ajouter_cover']) ?></a></p>
         
-        <h2>Liste des Covers</h2>
+        <h2><?= htmlspecialchars($traductions['liste_covers']) ?></h2>
         
         <?php if (empty($covers)): ?>
-            <p>Aucun cover disponible.</p>
+            <p><?= htmlspecialchars($traductions['pas_cover']) ?></p>
         <?php else: ?>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Album</th>
-                        <th>Artiste</th>
-                        <th>Taille</th>
-                        <th>Prix</th>
+                        <th><?= htmlspecialchars($traductions['artiste']) ?></th>
+                        <th><?= htmlspecialchars($traductions['taille']) ?></th>
+                        <th><?= htmlspecialchars($traductions['prix']) ?></th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -84,7 +84,7 @@ $covers = $coversManager->getCovers();
                                 <form method="post" style="display: inline;" 
                                       onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce cover ?');">
                                     <input type="hidden" name="cover_id" value="<?= $cover->getId() ?>">
-                                    <button type="submit" name="delete_cover" class="secondary">Supprimer</button>
+                                    <button type="submit" name="delete_cover" class="secondary"><?= htmlspecialchars($traductions['supprimer']) ?></button>
                                 </form>
                             </td>
                         </tr>
