@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $mail->Body = <<<HTML
                         <h1>Bonjour $usernameSafe!</h1>
                         <p>Bienvenue sur PaintMyCover :)</p>
-                        <p>Clique <a href="http://paintmycover/public/auth/login">ici</a> pour te connecter !</p>
+                        <p>Clique <a href="https://paintmycover.ch/public/auth/login.php">ici</a> pour te connecter !</p>
                         HTML;
                     $mail->AltBody = "Bonjour $usernameSafe!\nBienvenue sur PaintMyCover :)\nConnecte-toi ici: http://paintmycover/public/auth/login\nÀ bientôt !";
 
