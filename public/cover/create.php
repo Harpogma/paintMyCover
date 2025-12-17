@@ -82,7 +82,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php } ?>
 <?php } ?>
 
-<form action="cover/create.php" method="post">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+</head>
+<body>
+    <?php require_once __DIR__ . "/../../src/includes/header.php"; ?>
+    <main>
+<form action="create.php" method="post">
     <label for="albumName">Album name
         <input type="text" id="albumName" name="albumName">
     </label>
@@ -100,4 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </label>
     <button type="submit">Add cover</button>
 </form>
+</main>
+    <?php require_once __DIR__ . "/../../src/includes/footer.php"; ?>
+</body>
 
