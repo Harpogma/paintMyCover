@@ -45,6 +45,8 @@ return [
     "pas_cover" => "Aucune cover disponible",
     "gestionUtilisateurs" => "Gestion des utilisateurs",
     "liste_utilisateurs" => "Liste des utilisateurs",
+    "gererUtilisateurs" => "Gérer les utilisateurs",
+    "gererUtilisateurs_descr" => "Voir les utilisateurs et modifier leurs rôles",
     "pas_utilisateur" => "Aucun utilisateur trouvé",
     "role" => "Rôle",
     "vous" => "Vous",
