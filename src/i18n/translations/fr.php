@@ -37,7 +37,7 @@ return [
     "gestionCovers" => "Gestion des covers",
     "retour_tableauBord" => "Retour au tableau de bord",
     "ajouter_cover" => "Ajouter une nouvelle cover",
-    "lste_covers" => "Liste des covers",
+    "liste_covers" => "Liste des covers",
     "artiste" => "Artiste",
     "taille" => "Taille",
     "prix" => "Prix",
