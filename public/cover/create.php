@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $coverId = $coversManager->addCover($cover);
             $coversManager->assignCoverToUser($coverId, $user_id);
 
-            header('Location: /adminDashboard.php?success=1');
+            header('Location: ../admin/manageCovers.php?success=1');
             exit();
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {
@@ -67,13 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h2>Add a cover</h2>
+<h2><?= htmlspecialchars($traductions['ajouter_cover']) ?></h2>
 
 <?php if ($_SERVER["REQUEST_METHOD"] === "POST") { ?>
     <?php if (empty($errors)) { ?>
-        <p style="color: green;">La cover a été ajoutée avec succès !</p>
+        <p style="color: green;"><?= htmlspecialchars($traductions['cover_vert']) ?></p>
     <?php } else { ?>
-        <p style="color: red;">Le formulaire contient des erreurs :</p>
+        <p style="color: red;"><?= htmlspecialchars($traductions['cover_rouge']) ?></p>
         <ul>
             <?php foreach ($errors as $error) { ?>
                 <li><?php echo $error; ?></li>
@@ -96,22 +96,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require_once __DIR__ . "/../../src/includes/header.php"; ?>
     <main>
 <form action="create.php" method="post">
-    <label for="albumName">Album name
+    <label for="albumName">Album
         <input type="text" id="albumName" name="albumName">
     </label>
-    <label for="artistName">Artist name
+    <label for="artistName"><?= htmlspecialchars($traductions['artiste']) ?>
         <input type="text" id="artistName" name="artistName">
     </label>
-    <label for="canvaSize">Canva size
+    <label for="canvaSize"><?= htmlspecialchars($traductions['taille']) ?>
         <input type="text" id="canvaSize" name="canvaSize">
     </label>
-    <label for="imagePath">Image path
+    <label for="imagePath"><?= htmlspecialchars($traductions['chemin_image']) ?>
         <input type="text" id="imagePath" name="imagePath">
     </label>
-    <label for="priceRange">Price range
+    <label for="priceRange"><?= htmlspecialchars($traductions['prix']) ?>
         <input type="text" id="priceRange" name="priceRange">
     </label>
-    <button type="submit">Add cover</button>
+    <button type="submit"><?= htmlspecialchars($traductions['ajouter_cover']) ?></button>
 </form>
 </main>
     <?php require_once __DIR__ . "/../../src/includes/footer.php"; ?>

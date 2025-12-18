@@ -41,14 +41,21 @@ return [
     "artiste" => "Artist",
     "taille" => "Size",
     "prix" => "Price",
+    "chemin_image" => "Image Path",
     "supprimer" => "Delete",
     "pas_cover" => "No cover available",
+    "cover_vert" => "The cover has been successfully added !",
+    "cover_rouge" => "the form contains errors :",
+    "cover_supprimer" => "The cover has been successfully removed.",
     "gestionUtilisateurs" => "Users management",
     "liste_utilisateurs" => "Users list",
     "pas_utilisateur" => "No user found",
     "role" => "Role",
     "vous" => "You",
     "cover_dispo" => "All available covers",
+    "contact_nous" => "Contact us",
+    "envoyer_mail" => "send an email",
+
     
     "languages" => [
         "en" => "English",

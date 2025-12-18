@@ -41,6 +41,10 @@ return [
     "artiste" => "Artiste",
     "taille" => "Taille",
     "prix" => "Prix",
+    "cover_vert" => "La cover a été ajoutée avec succès !",
+    "cover_rouge" => "Le formulaire contient des erreurs :",
+    "cover_supprimer" => "La cover a été supprimée avec succès",
+    "chemin_image" => "Chemin d'accès de l'image",
     "supprimer" => "supprimer",
     "pas_cover" => "Aucune cover disponible",
     "gestionUtilisateurs" => "Gestion des utilisateurs",
@@ -51,6 +55,9 @@ return [
     "role" => "Rôle",
     "vous" => "Vous",
     "cover_dispo" => "Toutes les covers disponibles",
+    "contact_nous" => "Contactez-nous",
+    "envoyer_mail" => "Envoyer un mail",
+
 
     "languages" => [
         "en" => "English",

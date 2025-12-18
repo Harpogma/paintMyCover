@@ -13,6 +13,10 @@ $coversManager = new CoversManager();
 $message = '';
 $error = '';
 
+if (isset($_GET['success']) && $_GET['success'] == '1') {
+    $message = htmlspecialchars($traductions['cover_vert']);
+}
+
 // Traiter la suppression
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_cover'])) {
     $coverId = (int)$_POST['cover_id'];
