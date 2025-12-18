@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require_once __DIR__ . "/../../src/includes/header.php"; ?>
 
     <main class="container">
-        <h1>Créer un compte</h1>
+        <h1><?= htmlspecialchars($traductions['compte']) ?></h1>
 
         <?php if ($errors) { ?>
             <p><strong>Erreur :</strong> <?= htmlspecialchars($errors) ?></p>
@@ -152,31 +152,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="post">
             <label for="username">
-                Nom d'utilisateur
+                <?= htmlspecialchars($traductions['nom_utilisateur']) ?>
                 <input type="text" id="username" name="username" required autofocus>
             </label>
 
             <label for="email">
-                Adresse e-mail
+                Email
                 <input type="email" id="email" name="email" required>
             </label>
 
             <label for="password">
-                Mot de passe (min. 8 caractères)
+                <?= htmlspecialchars($traductions['mdp_caractere']) ?>
                 <input type="password" id="password" name="password" required minlength="8">
             </label>
 
             <label for="confirm_password">
-                Confirmer le mot de passe
+                <?= htmlspecialchars($traductions['confirmer_mdp']) ?>
                 <input type="password" id="confirm_password" name="confirm_password" required minlength="8">
             </label>
 
-            <button type="submit">Créer mon compte</button>
+            <button type="submit"><?= htmlspecialchars($traductions['compte_moi']) ?></button>
         </form>
 
-        <p>Vous avez déjà un compte ? <a href="<?php echo url('auth/login'); ?>">Se connecter</a></p>
+        <p><?= htmlspecialchars($traductions['membre']) ?> <a href="<?php echo url('auth/login'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></p>
 
-        <p><a href="<?php echo url('index'); ?>">Retour à l'accueil</a></p>
+        <p><a href="<?php echo url('index'); ?>"><?= htmlspecialchars($traductions['retour_accueil']) ?></a></p>
     </main>
 
     <?php require_once __DIR__ . "/../../src/includes/footer.php"; ?>

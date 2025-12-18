@@ -35,11 +35,11 @@ $covers = $coversManager->getCovers();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="<?php echo url('css/custom.css'); ?>">
+    
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-
+    <link rel="stylesheet" href="<?php echo url('assets/css/custom.css'); ?>">
     <title><?= htmlspecialchars($traductions['titre']) ?></title>
 </head>
 
@@ -65,14 +65,15 @@ $covers = $coversManager->getCovers();
 
 
         <h2>Covers</h2>
-        <main>
-            <?php foreach ($covers as $cover) : ?>
-                <div class="cover-card">
-                    <img src="img/<?= htmlspecialchars($cover->getImagePath()) ?>" alt="Cover image" width="200">
-                    <h4><?= htmlspecialchars($cover->getAlbumName()) ?></h4>
-                    <p><?= htmlspecialchars($cover->getArtistName()) ?></p>
-                </div>
-            <?php endforeach; ?>
+        <div class="covers-grid">
+        <?php foreach ($covers as $cover) : ?>
+            <div class="cover-card">
+                <img src="img/<?= htmlspecialchars($cover->getImagePath()) ?>" alt="Cover image">
+                <h4><?= htmlspecialchars($cover->getAlbumName()) ?></h4>
+                <p><?= htmlspecialchars($cover->getArtistName()) ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
         </main>
 
 

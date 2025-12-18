@@ -27,10 +27,9 @@ $traductions = loadTranslation($lang);
 
   <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
 
-  <?php //TODO faire la traduction ?>
   <container>
-      <h2>Contactez-nous</h2>
-      <a href="mailto:contact@paintmycover.ch">Envoyer un mail</a>
+      <h2><?= htmlspecialchars($traductions['contact_nous']) ?></h2>
+      <a href="mailto:contact@paintmycover.ch"><?= htmlspecialchars($traductions['envoyer_mail']) ?></a>
   </container>
 
 

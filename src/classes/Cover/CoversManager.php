@@ -78,16 +78,10 @@ class CoversManager implements ICoversManager {
 
 
     public function removeCover(int $id): bool {
-        // Définition de la requête SQL pour supprimer une cover
-        $sql = "DELETE FROM covers WHERE id = :id";
-
-        // Préparation de la requête SQL
+        $sql = "DELETE FROM cover WHERE id = :id";
         $stmt = $this->database->getPdo()->prepare($sql);
-
-        // Lien avec le paramètre
         $stmt->bindValue(':id', $id);
-
-        // Exécution de la requête SQL pour supprimer un outil
+        
         return $stmt->execute();
     }
 }

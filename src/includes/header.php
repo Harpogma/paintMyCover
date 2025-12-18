@@ -15,7 +15,7 @@
             <?php else: ?>
                 <li><a href="<?php echo url('auth/login'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></li>
 
-            <li><a href="<?php echo url('auth/register'); ?>"><?= htmlspecialchars($traductions['connexion']) ?></a></li>
+            <li><a href="<?php echo url('auth/register'); ?>"><?= htmlspecialchars($traductions['compte']) ?></a></li>
         <?php endif; ?>
         </ul>
     </nav>

@@ -76,15 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="POST">
         <label for="username">
-            <input type="text" id="username" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="text" id="username" name="username" placeholder="<?= htmlspecialchars($traductions['nom_utilisateur']) ?>" required>
         </label>
         <label for="password"   >
-            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+            <input type="password" id="password" name="password" placeholder="<?= htmlspecialchars($traductions['mdp']) ?>" required>
         </label>
         <button type="submit"><?= htmlspecialchars($traductions['connexion']) ?></button>
     </form>
 
-    <p>Vous n'avez pas encore de compte ? <a href="<?php echo url('auth/register'); ?>"><?= htmlspecialchars($traductions['compte']) ?></a></p>
+    <p><?= htmlspecialchars($traductions['pas_compte']) ?> <a href="<?php echo url('auth/register'); ?>"><?= htmlspecialchars($traductions['compte']) ?></a></p>
     <?php require_once __DIR__ . "/../../src/includes/footer.php"; ?>
 
 </body>
