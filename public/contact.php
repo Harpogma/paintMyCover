@@ -3,6 +3,8 @@ require_once __DIR__ . '/../src/i18n/load-translation.php';
 require_once __DIR__ . '/../src/config/config.php';
 require_once __DIR__ . '/../src/utils/cookie-manager.php';
 
+$lang = CookieManager::getLanguage() ?? DEFAULT_LANG;
+$traductions = loadTranslation($lang);
 
 ?>
 
@@ -25,36 +27,13 @@ require_once __DIR__ . '/../src/utils/cookie-manager.php';
 
   <?php require_once __DIR__ . "/../src/includes/header.php"; ?>
 
-  <form class="container">
-    <fieldset>
-      <label>
-        <?= htmlspecialchars($traductions['nom']) ?>
-        <input
-          name="first_name"
-          placeholder="Prénom"
-          autocomplete="given-name"
-          required />
-      </label>
-      <label>
-        Email
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          autocomplete="email"
-          required />
-      </label>
-      <label for="message">
-        Message
-        <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
-      </label>
-    </fieldset>
+  <?php //TODO faire la traduction ?>
+  <container>
+      <h2>Contactez-nous</h2>
+      <a href="mailto:contact@paintmycover.ch">Envoyer un mail</a>
+  </container>
 
 
-    <input
-      type="submit"
-      value="<?= htmlspecialchars($traductions['enregistrer']) ?>" />
-  </form>
   <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
 
 </body>

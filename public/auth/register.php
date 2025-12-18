@@ -11,54 +11,15 @@ global $traductions;
 global $lang;
 session_start();
 
-//const MAIL_CONFIGURATION_FILE = __DIR__ . '/../../src/config/mail.ini';
-//$config = parse_ini_file(MAIL_CONFIGURATION_FILE);
-//
-//
-//
-//if (!$config) {
-//    throw new Exception("Erreur lors de la lecture du fichier de configuration : " . MAIL_CONFIGURATION_FILE);
-//}
-//
-//$host = $config['host'];
-//$port = filter_var($config['port'], FILTER_VALIDATE_INT);
-//$authentication = filter_var($config['authentication'], FILTER_VALIDATE_BOOLEAN);
-//$username = $config['username'];
-//$password = $config['password'];
-//$from_email = $config['from_email'];
-//$from_name = $config['from_name'];
-//
-//$mail = new PHPMailer(true);
-//$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-//
-//try {
-//    $mail->isSMTP();
-//    $mail->Host = $host;
-//    $mail->Port = $port;
-//    $mail->SMTPAuth = $authentication;
-//    $mail->Username = $username;
-//    $mail->Password = $password;
-//    $mail->CharSet = 'UTF-8';
-//    $mail->Encoding = 'base64';
-//
-//    $mail->setFrom($from_email, $from_name);
-//    $mail->addAddress('contact@paintmycover.ch', 'PaintMyCover');
-//
-//    $mail->isHTML(true);
-//    $mail->Subject = 'subject test mail';
-//    $mail->Body = 'body test mail';
-//    $mail->AltBody = 'alt body test mail';
-//
-//    $mail->send();
-//
-//    echo('Mail has been sent');
-//} catch (Exception $e) {
-//    echo("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-//}
-
-
-
-
+if (isset($_SESSION['user_id'])) {
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: /../adminDashboard.php");
+        exit();
+    } else {
+        header("Location: /../dashboard.php");
+        exit();
+    }
+}
 
 $errors = '';
 $success = '';
@@ -140,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $mail->Body = <<<HTML
                         <h1>Bonjour $usernameSafe!</h1>
                         <p>Bienvenue sur PaintMyCover :)</p>
-                        <p>Clique <a href="http://paintmycover/public/auth/login">ici</a> pour te connecter !</p>
+                        <p>Clique <a href="https://paintmycover.ch/public/auth/login.php">ici</a> pour te connecter !</p>
                         HTML;
                     $mail->AltBody = "Bonjour $usernameSafe!\nBienvenue sur PaintMyCover :)\nConnecte-toi ici: http://paintmycover/public/auth/login\nÀ bientôt !";
 

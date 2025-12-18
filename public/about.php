@@ -44,8 +44,7 @@ require_once __DIR__ . '/../src/config/config.php';
 
     </main>
 
-    <footer>
-        <p class="text-center">&copy; <?= date('Y') ?> PaintMyCover</p>
-    </footer>
+    <?php require_once __DIR__ . "/../src/includes/footer.php"; ?>
+
 </body>
 </html>
