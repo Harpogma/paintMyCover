@@ -16,7 +16,7 @@
     - maintenir la connexion
     - se déconnecter
   - 2 rôles (utilisateur et admin)
-  - (12)   gestion utilisateur et gestion commande tableaux ,simplement 2 tables dans la DB
+  - gestion utilisateur et gestion commande tableaux ,simplement 2 tables dans la DB
   - stocker les mots de passe dans la DB de manière sécurisée (bonne pratique)
   - chargement des classes automatique
 - Fonctionnalité optionnelle de l'application
@@ -36,3 +36,21 @@ Un admin peut :
 - Se connecter en tant qu'admin à son espace
 - Voir toutes les commandes de tous les utilisateurs
 - Recevoir un mail à chaque fois qu'un utilisateur fait une commande avec les détails
+
+## Notes fin de projet
+
+Les fonctionnalités suivantes n'ont pas été mises en place :
+- un utilisateur peut commander des covers
+- un admin ne peut pas voir les commandes des autres utilisateurs (cf. point du dessus)
+- un admon reçoit un mail lorsqu'un user commande une cover (cf. points du dessus)
+
+### Retour d'expérience
+
+Nous avons pu nous répartir les tâches de manière équilibrée afin que chacun puisse mettre 
+en pratique les cocepts vus en cours. L'IA (ChatGPT et Claude) a parfois été utilisé pour du débugging.
+
+Difficultés rencontrées : 
+- L'implémentation de l'authentification demande de bien comprendre le fonctionnement des sessions ainsi que des requêtes SQL pour interroger la DB. 
+- La gestion du cookie de session PHPSESSID pas très facie au début
+- Dans le dashboard admin, la gestion des covers et des users avec les requêtes vers la DB a demandé plusieurs essais
+- Comprendre le fonctionnement d'un site web sur un serveur distant. Bien comprendre la différence entre son environnement local, les fichiers déposés sur le serveur et git.
